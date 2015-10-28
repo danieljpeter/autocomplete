@@ -1,0 +1,11 @@
+.THIS .slds-lookup__control, .THIS .slds-form-element__control, .THIS .slds-lookup__menu {
+     width: 320px;       
+}
+
+.THIS .slds-pill__label {
+     overflow: visible;    
+}
+
+.THIS .slds-pill-container {
+     padding-top: 4px;  
+}

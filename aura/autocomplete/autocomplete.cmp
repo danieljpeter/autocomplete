@@ -1,0 +1,74 @@
+<aura:component controller="LookupController">
+	
+    <ltng:require styles="/resource/SLDS0101/assets/styles/salesforce-lightning-design-system-ltng.min.css"
+                  afterScriptsLoaded="{!c.doInit}"/>   
+    
+    <aura:handler name="choose" event="c:autoCompleteChoose" action="{!c.setChosen}"/>
+
+    <aura:attribute name="clientServer" type="String" required="true" description="client or server"/>   
+    <aura:attribute name="startsWith" type="Boolean" default="true" description="true is starts with, false is contains"/>   
+    <aura:attribute name="objectName" type="String" required="true" description="object to search"/>    
+    <aura:attribute name="searchField" type="String" required="true" description="field to search"/>        
+
+    <aura:attribute name="lookupVal" type="String" description="matched Id"/>      
+    <aura:attribute name="lookupLabel" type="String" description="matched Label"/>        
+    
+    <!-- all available records -->
+    <aura:attribute name="allRecords" type="Object[]" access="private"/>    
+    
+    <!-- records matching typeahead text -->
+    <aura:attribute name="matchedRecords" type="Object[]" access="private"/>    
+
+    <aura:attribute name="recordChosen" type="Boolean"/>  
+    
+	<div class="slds">
+        
+		<aura:renderIf isTrue="{!!v.recordChosen}">           
+            <div class="slds-media__body">
+                <div class="slds-lookup" data-select="single" data-scope="single" data-typeahead="false">
+                    <div class="slds-form-element">
+                        <div class="slds-lookup__control slds-input-has-icon slds-input-has-icon--right">
+                            <c:svgIcon svgPath="/resource/SLDS0101/assets/icons/utility-sprite/svg/symbols.svg#search" class="slds-input__icon" />
+                            <ui:inputText aura:id="searchInput" placeholder="Search..." keyup="{!c.doSearch}" updateOn="keyup" class="slds-input"/>
+                        </div>
+                    </div>
+                    <aura:renderIf isTrue="{!v.matchedRecords.length == 0 ? false : true}">   
+                        <div class="slds-lookup__menu" role="listbox">
+                            <ul class="slds-lookup__list" role="presentation">
+                                <aura:iteration var="record" items="{!v.matchedRecords}">
+                                    <c:autoCompleteMatch record="{!record}"/>
+                                </aura:iteration>
+                            </ul>
+                        </div>
+                    </aura:renderIf>
+                </div>      
+            </div>    
+		</aura:renderIf>
+
+        
+
+		<aura:renderIf isTrue="{!v.recordChosen}">           
+            <div class="slds-lookup slds-has-selection" data-select="single" data-scope="single" data-typeahead="false">
+                <div class="slds-form-element">
+                    <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon--right">
+                        <div class="slds-pill-container slds-show">
+                            <span class="slds-pill slds-pill--bare">
+                                <a href="#" class="slds-pill__label">{!v.lookupLabel}</a>
+                                <button class="slds-button slds-button--icon-bare" onclick="{!c.removeChosen}">
+									<c:svgIcon svgPath="/resource/SLDS0101/assets/icons/utility-sprite/svg/symbols.svg#close" class="slds-button__icon" />                                    
+                                    <span class="slds-assistive-text">Remove</span>
+                                </button>
+                            </span>
+                        </div>
+                        <input id="lookup" class="slds-input slds-hide" type="text" aria-autocomplete="list" role="combobox" aria-expanded="false" aria-activedescendant="" />
+                    </div>
+                </div>
+            </div>        
+		</aura:renderIf>        
+        
+        
+
+    </div>
+    
+    
+</aura:component>

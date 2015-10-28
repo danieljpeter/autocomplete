@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>acdemo</fullName>
+    <apiAccessLevel>Unrestricted</apiAccessLevel>
+    <namespacePrefix></namespacePrefix>
+    <types>
+        <members>LookupController</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>autoCompleteChoose</members>
+        <members>autoCompleteMatch</members>
+        <members>autocomplete</members>
+        <members>lookItUp</members>
+        <members>svgIcon</members>
+        <name>AuraDefinitionBundle</name>
+    </types>
+    <types>
+        <members>Demo</members>
+        <name>CustomApplication</name>
+    </types>
+    <types>
+        <members>Lookup_Demo_Page</members>
+        <name>CustomTab</name>
+    </types>
+    <version>35.0</version>
+</Package>

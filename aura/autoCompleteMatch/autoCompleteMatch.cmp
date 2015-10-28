@@ -1,0 +1,8 @@
+<aura:component >
+    <aura:registerEvent name="choose" type="c:autoCompleteChoose"/>
+
+	<aura:attribute name="record" type="String[]"/>
+    <li class="slds-dropdown__item slds-has-icon--left" role="menuitem option">
+        <a href="javascript:void(0);" onclick="{!c.chooseItem}" class="slds-truncate">{!v.record[1]}</a>  
+    </li>      	
+</aura:component>

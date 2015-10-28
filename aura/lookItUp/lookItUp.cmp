@@ -1,0 +1,50 @@
+<aura:component implements="force:appHostable">
+	
+    <div style="width: 90%; padding-left: 10px;">
+    Type ahead lookup demo
+    
+    Contact Lookup (client, startsWith)
+    <br/>
+    <c:autocomplete clientServer="client" 
+                    objectName="Contact" 
+                    searchField="Name" 
+                    startsWith="true" />  
+        
+	<br/><br/>     
+        
+    Contact Lookup (client, contains)
+    <br/>
+    <c:autocomplete clientServer="client" 
+                    objectName="Contact" 
+                    searchField="Name" 
+                    startsWith="false" />  
+        
+	<br/><br/>            
+        
+    Contact Lookup (server)
+    <br/>
+    <c:autocomplete clientServer="server" 
+                    objectName="Contact" 
+                    searchField="Name" />  
+        
+	<br/><br/>             
+        
+        
+    Account Lookup
+    <br/>
+    <c:autocomplete clientServer="client" 
+                    objectName="Account" 
+                    searchField="Name" />          
+        
+        
+    </div>
+    
+    
+
+
+
+
+    
+    
+
+</aura:component>
